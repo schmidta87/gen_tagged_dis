@@ -49,3 +49,10 @@ double disCS_ft(double E1, double E3, double theta, double thisF1, double thisF2
   
   return 4.*alpha*alpha*E3*E3*cosTo2*cosTo2/(QSq*QSq) * (thisF2/nu + 2./mP * thisF1*tanTo2*tanTo2);
 }
+
+double disCS(double s, double xB, double QSq, double thisF1, double thisF2)
+{
+  const double y = QSq/(xB*(s-mP*mP));
+
+  return 4.*M_PI*alpha*alpha/(QSq*QSq) * ( (1.-y-mP*mP*QSq/(s-mP*mP)) * thisF2/xB + y*y*thisF1);
+}

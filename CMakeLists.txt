@@ -13,6 +13,5 @@ include_directories(${CMAKE_SOURCE_DIR}/include ${ROOT_INCLUDE_DIR})
 #Add a subdirectory for cross section library
 add_subdirectory(Cross_Sections)
 
-
 add_executable(gen_tagged_dis gen_tagged_dis.cpp)
-target_link_libraries(gen_tagged_dis ${ROOT_LIBRARIES} )
+target_link_libraries(gen_tagged_dis Cross_Sections ${ROOT_LIBRARIES} )

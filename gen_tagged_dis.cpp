@@ -10,6 +10,7 @@
 #include "TLorentzVector.h"
 
 #include "constants.h"
+#include "Cross_Sections.h"
 
 using namespace std;
 
@@ -62,10 +63,13 @@ int main(int argc, char ** argv)
 
   TLorentzVector v4beam_e_ft=v4beam_e;
   v4beam_e_ft.Boost(-v4beam_d.BoostVector());
+  const double s=mP*mP + 2.*mP*v4beam_e_ft.P();
+  
   cerr << "Kinematics:\n"
        << "    Deuteron: " << pBeam_d  << " GeV/c\n"
        << "    Electron: " << pBeam_e  << " GeV/c\n"
-       << "This kinematic setting is equivalent to a fixed-target beam energy of " << v4beam_e_ft.P() << " GeV.\n";
+       << "This kinematic setting is equivalent to a fixed-target beam energy of " << v4beam_e_ft.P() << " GeV.\n"
+       << "  or a sqrt(s) of " << sqrt(s) << " GeV.\n";
    
   // Loop over the events
   for (int event=0; event <= Nevents ; event++)
@@ -96,9 +100,11 @@ int main(int argc, char ** argv)
       TLorentzVector v4_e_ft(mom_e_ft*sinTheta_e_ft*cos(phi_e),mom_e_ft*sinTheta_e_ft*sin(phi_e),mom_e_ft*cosTheta_e_ft,mom_e_ft);
 
       // Evaluate the cross section
-      weight = disCS_ft(v4beam_e_ft.P(),mom_e_ft,theta_e_ft,F1(xB,QSq),F2(xB,QSq));  // This is also not correct. We need Jacobean to xB*QSq           
+      weight = disCS(s,xB,QSq,F1(xB,QSq),F2(xB,QSq)) * (xB_max-xB_min)*(QSq_max-QSq_min);
 
       // Boost to the Collider frame
+
+      // Fill out the output tree kinematics
       
       outtree->Fill();
     }
