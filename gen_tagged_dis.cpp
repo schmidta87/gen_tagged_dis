@@ -13,6 +13,14 @@
 
 using namespace std;
 
+// Define some program-wide constants.
+// We can change these later.
+const double xB_min=0.01;
+const double xB_max=0.99;
+const double QSq_min=2.;
+const double QSq_max=10.;
+
+
 int main(int argc, char ** argv)
 {
   cout << "Hello world.\n";
@@ -61,7 +69,7 @@ int main(int argc, char ** argv)
    
   // Loop over the events
   for (int event=0; event <= Nevents ; event++)
-    {
+    {      
       weight=0;
       mom_e=0;
       theta_e=0;
@@ -69,11 +77,26 @@ int main(int argc, char ** argv)
       mom_s=0;
       theta_s=0;
       phi_s=0;
-      specID=pCode;
+      specID=nCode;
 
       // Generate random kinematics
+      const double xB = xB_min + myRand.Rndm() * (xB_max - xB_min);
+      const double QSq = QSq_min + myRand.Rndm() * (QSq_max - QSq_min);
+      phi_e = (myRand.Rndm() * 2.-1.)* M_PI;
+      const double alpha_s = myRand.Rndm() * 2.;
+      const double pperpx_s = myRand.Gaus() * 0.25; // This is highly unphysical. Just a placeholder for now.
+      const double pperpy_s = myRand.Gaus() * 0.25; //
+      phi_s = atan2(pperpy_s,pperpx_s);
+
+      // Calculate fixed-target kinematic variables
+      const double mom_e_ft = v4beam_e_ft.P() - QSq/(2.*xB*mP);
+      const double cosTheta_e_ft = 1. - QSq/(2.*v4beam_e_ft.P()*mom_e_ft);
+      const double sinTheta_e_ft = sqrt(1.-cosTheta_e_ft*cosTheta_e_ft);
+      const double theta_e_ft = acos(cosTheta_e_ft);
+      TLorentzVector v4_e_ft(mom_e_ft*sinTheta_e_ft*cos(phi_e),mom_e_ft*sinTheta_e_ft*sin(phi_e),mom_e_ft*cosTheta_e_ft,mom_e_ft);
 
       // Evaluate the cross section
+      weight = disCS_ft(v4beam_e_ft.P(),mom_e_ft,theta_e_ft,F1(xB,QSq),F2(xB,QSq));  // This is also not correct. We need Jacobean to xB*QSq           
 
       // Boost to the Collider frame
       

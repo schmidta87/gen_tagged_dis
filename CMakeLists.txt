@@ -10,8 +10,8 @@ project (tagged_dis_eic)
 
 include_directories(${CMAKE_SOURCE_DIR}/include ${ROOT_INCLUDE_DIR})
 
-# Add a subdirectory for cross section library
-# add_subdirectory(cross_sections)
+#Add a subdirectory for cross section library
+add_subdirectory(Cross_Sections)
 
 
 add_executable(gen_tagged_dis gen_tagged_dis.cpp)
