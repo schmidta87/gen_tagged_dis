@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
 
 \begin{document}
 
@@ -8,7 +9,113 @@ We want to find an expression for the light-cone momentum and virtuality distrib
   Segarra et al., Eq.~5, gives us:
   \begin{equation}
     \tilde{\rho}(\alpha,v) = \int dE d^3p S(E,\vec{p}) \frac{E+p_z}{E} \delta\left( \alpha - \frac{A(E+p_z)}{m_A}\right)
-      \delta\left( v - \frac{E^2 - |p|^2 - m_N^2}{m_N^2}\right).
+    \delta\left( v - \frac{E^2 - |p|^2 - m_N^2}{m_N^2}\right).
+    \label{eq:setup}
   \end{equation}
 
+  For deuterium, where the $(A-1)$ system is merely a nucleon, the spectral function is simply a momentum density, $n(p)$, with an
+  energy-conserving $\delta$-function:
+  \begin{equation}
+    S^d(E,p) = n(p) \delta\left(E - m_d + \sqrt{m_N^2 + p^2}\right).
+  \end{equation}
+
+  For the derivation that follows, I will preserve the distinction between the proton and neutron mass. The nucleon is struck
+  will be termed the ``leading'' nucleon, with subscript `L,' while the spectator nucleon will receive subscript `s.' In this
+  way, the spectral function for striking a nucleon of species `L' can be written:
+  \begin{equation}
+    S_L^d(E,p) = n(p) \delta\left(E - m_d + \sqrt{m_s^2 + p^2}\right),
+  \end{equation}
+  where the mass of spectator species enters into the $\delta$-function.
+
+  Plugging this spectral function into equation~\ref{eq:setup} gives us:
+  \begin{equation}
+    \tilde{\rho}_L^d(\alpha,v) = \int dE d^3p n(p) \delta\left(E - m_d + \sqrt{m_s^2 + p^2}\right) \frac{E+p_z}{E}
+    \delta\left( \alpha - \frac{2(E+p_z)}{m_d}\right)
+    \delta\left( v - \frac{E^2 - |p|^2 - m_L^2}{m_L^2}\right).
+  \end{equation}
+  It is simplest to attack this in cylindrical coordinates: $d^3p \rightarrow dp_z p_\perp dp_\perp d\phi$. We can eliminate
+  the $p_\perp$ integral using the virtuality $\delta$-function, from which we can see that $p_\perp = \sqrt{E^2 -p_z^2 + m_L^2(1+v)}$.
+  This yields:
+  \begin{equation}
+    \begin{split}
+    \tilde{\rho}_L^d(\alpha,v) = \int dE dp_z d\phi p_\perp dp_\perp n(p) \delta\left(E - m_d + \sqrt{m_s^2 + p^2}\right) \frac{E+p_z}{E}
+    \delta\left( \alpha - \frac{2(E+p_z)}{m_d}\right)\\
+    \cdot \frac{m_L^2}{2p_\perp} \delta\left( p_\perp - \sqrt{E^2 -p_z^2 + m_L^2(1+v)}\right),
+    \end{split}
+  \end{equation}
+  which simplifies to
+  \begin{equation}
+    \tilde{\rho}_L^d(\alpha,v) = \frac{m_L^2}{2} \int dE dp_z d\phi n(p) \delta\left(E - m_d + \sqrt{m_s^2 + p^2}\right) \frac{E+p_z}{E}
+    \delta\left( \alpha - \frac{2(E+p_z)}{m_d}\right).
+  \end{equation}
+  The momentum magnitude, $p$, can be expressed as $p^2 = p_\perp^2 + p_z^2$, which transforms the penultimate delta function:
+  \begin{equation}
+    \tilde{\rho}_L^d(\alpha,v) = \frac{m_L^2}{2} \int dE dp_z d\phi n(p) \delta\left(E - m_d + \sqrt{m_s^2 + E^2 - m_L^2(1+v)}\right) \frac{E+p_z}{E}
+    \delta\left( \alpha - \frac{2(E+p_z)}{m_d}\right).
+  \end{equation}
+  There is no sign of any $\phi$ dependence, so we may remove that integral,
+  \begin{equation}
+    \tilde{\rho}_L^d(\alpha,v) = \pi m_L^2 \int dE dp_z n(p) \delta\left(E - m_d + \sqrt{m_s^2 + E^2 - m_L^2(1+v)}\right) \frac{E+p_z}{E}
+    \delta\left( \alpha - \frac{2(E+p_z)}{m_d}\right),
+  \end{equation}
+  and turn our attention to the $\delta$-function specifying $\alpha$. We can see that $p_z = \frac{m_d \alpha}{2} - E$, which allows us to write:
+  \begin{equation}
+    \tilde{\rho}_L^d(\alpha,v) = \pi m_L^2 \int dE dp_z n(p) \delta\left(E - m_d + \sqrt{m_s^2 + E^2 - m_L^2(1+v)}\right) \frac{E+p_z}{E}
+    \frac{m_d}{2} \delta\left( p_z - \frac{m_d \alpha}{2} + E \right),
+  \end{equation}
+  perform the $dp_z$ integral, and end up with:
+  \begin{equation}
+    \tilde{\rho}_L^d(\alpha,v) = \frac{\pi m_d^2 m_L^2}{4} \int \frac{dE}{E} n(p) \delta\left(E - m_d + \sqrt{m_s^2 + E^2 - m_L^2(1+v)}\right).
+  \end{equation}
+
+
+  To tackle the $dE$ integral, we must transform the energy $\delta$-function. Treating it as $\delta(f(E)$, where
+  $f(E) = E - m_d + \sqrt{m_s^2 + E^2 - m_L^2(1+v)}$, we can take the derivative of $f$ with respect to $E$:
+  \begin{equation}
+    f'(E) = 1 + \frac{E}{\sqrt{E^2 + m_s^2 - m_L^2(1+v)}}.
+  \end{equation}
+  We can also invert $f$ to get
+  \begin{equation}
+    E= \frac{m_d^2 + m_L^2(1+v) - m_s^2}{2m_d}. 
+  \end{equation}
+  This allows us to transform the energy $\delta$-function to get:
+  \begin{equation}
+    \tilde{\rho}_L^d(\alpha,v) = \frac{\pi m_d^2 m_L^2}{4} \int \frac{dE}{E} n(p) \left|
+    \frac{\sqrt{E^2 + m_s^2 - m_L^2(1+v)}}{E+\sqrt{E^2 + m_s^2 - m_L^2(1+v)}} \right|
+    \delta\left(E -\frac{m_d^2 + m_L^2(1+v) - m_s^2}{2m_d}\right).
+  \end{equation}
+  Performing the integral gives us:
+  \begin{equation}
+    \tilde{\rho}_L^d(\alpha,v) = \frac{\pi m_d^2 m_L^2}{4}\cdot \frac{n(p)}{E} \cdot \left|
+    \frac{\sqrt{E^2 + m_s^2 - m_L^2(1+v)}}{E+\sqrt{E^2 + m_s^2 - m_L^2(1+v)}} \right|,
+  \end{equation}
+  and we must now substitute in $\frac{m_d^2 + m_L^2(1+v) - m_s^2}{2m_d}$ for $E$.
+
+  Let's first attack the term in the square root:
+  \begin{align}
+    E^2 &= \frac{1}{4m_d^2} \left[
+      m_d^4 + 2m_d^2m_L^2(1+v) - 2m_d^2m_s^2 + m_L^4(1+v)^2 - 2m_L^2m_s^2(1+v) +m_s^4\right] \\
+    m_s^2 - m_L^2(1+v) + E^2 &= \frac{1}{4m_d^2} \left[
+      m_d^4 - 2m_d^2m_L^2(1+v) + 2m_d^2m_s^2 + m_L^4(1+v)^2 - 2m_L^2m_s^2(1+v) +m_s^4\right] \\
+    m_s^2 - m_L^2(1+v) + E^2 &= \left( \frac{1}{2m_d} \left[
+      m_d^2 - m_L^2(1+v) + m_s^2\right]\right)^2\\
+    \sqrt{m_s^2 - m_L^2(1+v) + E^2} &= \frac{\left| m_d^2 - m_L^2(1+v) + m_s^2\right|}{2m_d}
+  \end{align}
+
+  Substituting this result into our expression gives us:
+  \begin{align}
+    \tilde{\rho}_L^d(\alpha,v) &= \frac{\pi m_d^2 m_L^2}{4} \cdot n(p) \cdot \frac{2m_d}{m_d^2 + m_L^2(1+v) - m_s^2} \cdot
+    \left|
+    \frac{m_d^2 - m_L^2(1+v) + m_s^2}{m_d^2 - m_L^2(1+v) + m_s^2 + m_d^2 + m_L^2(1+v) - m_s^2} \right|\\
+    &= \frac{\pi m_d^2 m_L^2}{4} \cdot n(p) \cdot \frac{2m_d}{m_d^2 + m_L^2(1+v) - m_s^2} \cdot
+    \left|
+    \frac{m_d^2 - m_L^2(1+v) + m_s^2}{2 m_d^2 } \right|\\
+    &= \frac{\pi m_d m_L^2}{4} \cdot n(p) \cdot \left| \frac{m_d^2 - m_L^2(1+v) + m_s^2}{m_d^2 + m_L^2(1+v) - m_s^2} \right|   
+  \end{align}
+
+  Up until now, we have preserved the distinction between the proton mass, $m_p$, and the neutron mass, $m_n$. However, if
+  ignore that distinction and assign both with the same nucleon mass, $m_N = m_s = m_L$, then our formula reduces to:
+  \begin{equation}
+    \tilde{\rho}^d(\alpha,v) = \frac{\pi m_d m_N^2}{4} \cdot n(p) \cdot \left| \frac{m_d^2 - vm_N^2}{m_d^2 + vm_N^2} \right|   
+  \end{equation}
 \end{document}
