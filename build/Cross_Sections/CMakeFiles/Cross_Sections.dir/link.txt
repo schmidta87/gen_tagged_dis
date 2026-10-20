@@ -1,0 +1,2 @@
+/usr/bin/ar qc libCross_Sections.a CMakeFiles/Cross_Sections.dir/Cross_Sections.cpp.o
+/usr/bin/ranlib libCross_Sections.a

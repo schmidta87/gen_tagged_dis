@@ -1,0 +1,13 @@
+/home/afrieb/work/ePIC/gen_tagged_dis/build/CMakeFiles/gen_tagged_dis.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/CMakeFiles/edit_cache.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/CMakeFiles/rebuild_cache.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/Cross_Sections/CMakeFiles/Cross_Sections.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/Cross_Sections/CMakeFiles/edit_cache.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/Cross_Sections/CMakeFiles/rebuild_cache.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/formalism/CMakeFiles/dvi.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/formalism/CMakeFiles/pdf.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/formalism/CMakeFiles/ps.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/formalism/CMakeFiles/safepdf.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/formalism/CMakeFiles/auxclean.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/formalism/CMakeFiles/edit_cache.dir
+/home/afrieb/work/ePIC/gen_tagged_dis/build/formalism/CMakeFiles/rebuild_cache.dir
