@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/afrieb/work/ePIC/gen_tagged_dis/build/cmake_install.cmake",
+		"/home/afrieb/work/ePIC/gen_tagged_dis/build/Cross_Sections/cmake_install.cmake",
+		"/home/afrieb/work/ePIC/gen_tagged_dis/build/formalism/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

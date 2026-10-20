@@ -1,6 +1,7 @@
 #ifndef __CONSTANTS_H__
 #define __CONSTANTS_H__
-
+//General 
+const double pi = 3.1415;
 // PDG Particle Codes
 const int pCode=2212;
 const int nCode=2112;
